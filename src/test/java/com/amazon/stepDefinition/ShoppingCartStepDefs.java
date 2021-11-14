@@ -51,8 +51,8 @@ public class ShoppingCartStepDefs {
     @When("user check the price is {string}")
     public void user_check_the_price_is(String expectedPrice) {
 
-        String priceText = productPage.price.getText();
-        Assert.assertEquals(expectedPrice, priceText);
+        String actualPrice = productPage.price.getText();
+        Assert.assertEquals(expectedPrice, actualPrice);
         BrowserTools.waitFor(2);
 
     }
@@ -67,9 +67,9 @@ public class ShoppingCartStepDefs {
     public void user_sees_the_is_in_the_shopping_cart(String product) {
 
         productPage.cartButton.click();
-        BrowserTools.waitFor(2);
+        BrowserTools.waitFor(5);
 
-        BrowserTools.verifyElementIsDisplayed( Driver.get().findElement(By.xpath("//*[contains(text(), '" + product + "')]")));
+        BrowserTools.verifyElementIsDisplayed( Driver.get().findElement(By.xpath("//*[contains(text(), '" + product + "') and @class='a-truncate-cut']")));
 
     }
 
